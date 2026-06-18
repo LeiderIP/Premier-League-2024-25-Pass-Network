@@ -48,4 +48,4 @@ Within each phase, only **completed passes between the 11 players in that lineup
 
 ---
 
-*Data © StatsBomb. Performance Analysis *
+*Data © StatsBomb. MSc Applied Performance Analysis — University of Essex. MIT licensed.*
