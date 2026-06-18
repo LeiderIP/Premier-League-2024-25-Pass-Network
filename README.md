@@ -1,6 +1,6 @@
 # Premier League 2024/25 — Pass Network Explorer
 
-Interactive pass network visualisation for any match in the 2024/25 Premier League season, built from StatsBomb event data.
+Interactive pass network visualisation for any match in the 2024/25 Premier League season, showing how the network evolves through every substitution — built from StatsBomb event data.
 
 ![Python](https://img.shields.io/badge/Python-3.10+-blue?style=flat-square&logo=python) ![SVG](https://img.shields.io/badge/Viz-SVG%20%2B%20JS-orange?style=flat-square) ![Data](https://img.shields.io/badge/Data-StatsBomb-red?style=flat-square)
 
@@ -15,10 +15,11 @@ Interactive pass network visualisation for any match in the 2024/25 Premier Leag
 ## Features
 
 - Select any of the 380 matches and either team
-- **Nodes** positioned at each starter's average pass location — reflects real tactical role
-- **Node size** scales with pass involvement
+- **Phase navigation** — step through every substitution with ◀ ▶ controls, always showing exactly 11 players on the pitch
+- A banner announces which player came off and which came on at each transition
+- **Nodes** positioned at each player's average pass location during that specific phase — reflects real tactical role, not a fixed formation slot
+- **Node size** scales with pass involvement within the phase
 - **Edge thickness** scales with pass frequency between two players
-- Network **frozen at the first substitution** — standard pass network convention
 - Hover any node or edge for exact stats
 - Jersey numbers shown inside each node
 - **Dark / Light theme toggle**
@@ -27,9 +28,9 @@ Interactive pass network visualisation for any match in the 2024/25 Premier Leag
 
 ## Method
 
-Only **completed passes between starting XI players**, before either team makes its first substitution, are included — this is the standard methodology used in professional pass network analysis, since substitutions break the original tactical shape.
+Each match is split into **phases bounded by lineup changes**. The Starting XI defines phase 1; every StatsBomb 'Tactical Shift' event (which fires whenever a team makes a substitution) provides the complete updated 11-man lineup with positions and jersey numbers for the next phase. This guarantees the network always reflects exactly the players on the pitch during that window — never a mix of players from before and after a substitution.
 
-Average position is computed from each player's pass origin locations during that window, giving a more accurate picture of real positioning than nominal formation slots.
+Within each phase, only **completed passes between the 11 players in that lineup** are counted. Average position is computed from each player's pass origin locations during that specific window, giving an accurate picture of real positioning rather than a nominal formation slot.
 
 ---
 
@@ -47,4 +48,4 @@ Average position is computed from each player's pass origin locations during tha
 
 ---
 
-*Data © StatsBomb. MSc Applied Performance Analysis — University of Essex. MIT licensed.*
+*Data © StatsBomb. Performance Analysis *
